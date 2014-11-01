@@ -7,13 +7,13 @@ from .combinatorics import xunique_combinations
 from .compat import cmp, reduce
 
 
-class item(object):
+class Item(object):
     def __init__(self, id, value):
         self.id = id
         self.value = value
         self.weights = []
 
-    def __repr__(self):
+    def __str__(self):
         return str(self.__dict__)
 
 
@@ -48,7 +48,7 @@ class all_pairs2(object):
         self.working_arr = []
 
         for i in range(len(options)):
-            self.working_arr.append([item("a%iv%i" % (i, j), value) for j, value in enumerate(options[i])])
+            self.working_arr.append([Item("a%iv%i" % (i, j), value) for j, value in enumerate(options[i])])
 
         for arr in previously_tested:
             if len(arr) == 0:
@@ -59,7 +59,7 @@ class all_pairs2(object):
                 raise Exception("invalid tested combination is provided")
             tested = []
             for i, val in enumerate(arr):
-                idxs = [item(node.id, 0) for node in self.working_arr[i] if node.value == val]
+                idxs = [Item(node.id, 0) for node in self.working_arr[i] if node.value == val]
                 if len(idxs) != 1:
                     raise Exception("value from previously tested combination is not found in the options or found more than once")
                 tested.append(idxs[0])
@@ -130,12 +130,12 @@ class all_pairs2(object):
                 # numbers of new combinations to be created if this item is appended to array
                 new_combs.append(set([s.hashlize(z) for z in xunique_combinations(chosen_values_arr + [item], i + 1)]) - self.pairs.get_combs()[i])
             # weighting the node
-            item.weights = [-len(new_combs[-1])]    # node that creates most of new pairs is the best
-            item.weights += [len(data_node.out)]  # less used outbound connections most likely to produce more new pairs while search continues
-            item.weights += [len(x) for x in reversed(new_combs[:-1])]
-            item.weights += [-data_node.counter]  # less used node is better
-            item.weights += [-len(data_node.in_)]  # otherwise we will prefer node with most of free inbound connections; somehow it works out better ;)
-
+            weights = [-len(new_combs[-1])]    # node that creates most of new pairs is the best
+            weights.extend([len(data_node.out)])  # less used outbound connections most likely to produce more new pairs while search continues
+            weights.extend([len(x) for x in reversed(new_combs[:-1])])
+            weights.extend([-data_node.counter])  # less used node is better
+            weights.extend([-len(data_node.in_)])  # otherwise we will prefer node with most of free inbound connections; somehow it works out better ;)
+            item.weights = weights
         self.working_arr[num].sort(key=lambda a: a.weights)
 
     # statistics, internal stuff
