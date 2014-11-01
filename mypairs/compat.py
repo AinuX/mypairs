@@ -9,11 +9,6 @@ else:
     xrange = xrange
 
 if PY3:
-    from functools import cmp_to_key as cmp
-else:
-    cmp = cmp
-
-if PY3:
     from functools import reduce
 else:
     reduce = reduce

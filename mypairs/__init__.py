@@ -4,7 +4,7 @@ logger = logging.getLogger(__name__)
 
 from . import structure as s
 from itertools import combinations
-from .compat import cmp, reduce
+from .compat import reduce
 
 
 class Item(object):
