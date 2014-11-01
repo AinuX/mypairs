@@ -1,10 +1,10 @@
 # -*- coding:utf-8 -*-
 from .combinatorics import (
-    xuniqueCombinations
+    xunique_combinations
 )
 
 
-class node(object):
+class Node(object):
     def __init__(self, id):
         self.id = id
         self.counter = 0
@@ -19,7 +19,7 @@ def key(items):
     return "->".join([x.id for x in items])
 
 
-class pairs_storage(object):
+class PairsStorage(object):
     def __init__(self, n):
         self.__n = n
         self.__nodes = {}
@@ -33,7 +33,7 @@ class pairs_storage(object):
 
         self.__combs_arr[n - 1].add(key(comb))
         if n == 1 and comb[0].id not in self.__nodes:
-            self.__nodes[comb[0].id] = node(comb[0].id)
+            self.__nodes[comb[0].id] = Node(comb[0].id)
             return
 
         ids = [x.id for x in comb]
@@ -45,11 +45,11 @@ class pairs_storage(object):
 
     def add_sequence(self, seq):
         for i in range(1, self.__n + 1):
-            for comb in xuniqueCombinations(seq, i):
+            for comb in xunique_combinations(seq, i):
                 self.add(comb)
 
     def get_node_info(self, item):
-        return self.__nodes.get(item.id, node(item.id))
+        return self.__nodes.get(item.id, Node(item.id))
 
     def get_combs(self):
         return self.__combs_arr
@@ -58,5 +58,5 @@ class pairs_storage(object):
         return len(self.__combs_arr[-1])
 
     def count_new_combs(self, seq):
-        s = set([key(z) for z in xuniqueCombinations(seq, self.__n)]) - self.__combs_arr[-1]
+        s = set([key(z) for z in xunique_combinations(seq, self.__n)]) - self.__combs_arr[-1]
         return len(s)
