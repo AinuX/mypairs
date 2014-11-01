@@ -128,7 +128,7 @@ class all_pairs2(object):
             new_combs = []
             for i in range(0, self.n):
                 # numbers of new combinations to be created if this item is appended to array
-                new_combs.append(set([z for z in xunique_combinations(chosen_values_arr + [item], i + 1)]) - self.pairs.get_combs()[i])
+                new_combs.append(set([s.hashlize(z) for z in xunique_combinations(chosen_values_arr + [item], i + 1)]) - self.pairs.get_combs()[i])
             # weighting the node
             item.weights = [-len(new_combs[-1])]    # node that creates most of new pairs is the best
             item.weights += [len(data_node.out)]  # less used outbound connections most likely to produce more new pairs while search continues

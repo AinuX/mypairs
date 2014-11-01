@@ -16,6 +16,10 @@ class Node(object):
         return str(self.__dict__)
 
 
+def hashlize(items):
+    return "->".join([x.id for x in items])
+
+
 class PairsStorage(object):
     def __init__(self, n):
         self.n = n
@@ -28,7 +32,7 @@ class PairsStorage(object):
         n = len(comb)
         assert(n > 0)
 
-        self.combs_arr[n - 1].add(comb)
+        self.combs_arr[n - 1].add(hashlize(comb))
         if n == 1 and comb[0].id not in self.nodes:
             self.nodes[comb[0].id] = Node(comb[0].id)
             return
@@ -55,5 +59,5 @@ class PairsStorage(object):
         return len(self.combs_arr[-1])
 
     def count_new_combs(self, seq):
-        s = set([z for z in xunique_combinations(seq, self.n)]) - self.combs_arr[-1]
+        s = set([hashlize(z) for z in xunique_combinations(seq, self.n)]) - self.combs_arr[-1]
         return len(s)
