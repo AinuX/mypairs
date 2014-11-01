@@ -15,10 +15,6 @@ class Node(object):
         return str(self.__dict__)
 
 
-def key(items):
-    return "->".join([x.id for x in items])
-
-
 class PairsStorage(object):
     def __init__(self, n):
         self.__n = n
@@ -31,7 +27,7 @@ class PairsStorage(object):
         n = len(comb)
         assert(n > 0)
 
-        self.__combs_arr[n - 1].add(key(comb))
+        self.__combs_arr[n - 1].add(comb)
         if n == 1 and comb[0].id not in self.__nodes:
             self.__nodes[comb[0].id] = Node(comb[0].id)
             return
@@ -58,5 +54,5 @@ class PairsStorage(object):
         return len(self.__combs_arr[-1])
 
     def count_new_combs(self, seq):
-        s = set([key(z) for z in xunique_combinations(seq, self.__n)]) - self.__combs_arr[-1]
+        s = set([z for z in xunique_combinations(seq, self.__n)]) - self.__combs_arr[-1]
         return len(s)
