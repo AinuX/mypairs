@@ -3,7 +3,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 from . import structure as s
-from .combinatorics import xunique_combinations
+from itertools import combinations
 from .compat import cmp, reduce
 
 
@@ -21,7 +21,7 @@ def get_max_comb_number(arr, n):
     items = [len(x) for x in arr]
     # print items
     f = lambda x, y: x * y
-    total = sum([reduce(f, z) for z in xunique_combinations(items, n)])
+    total = sum([reduce(f, z) for z in combinations(items, n)])
     return total
 
 
@@ -128,7 +128,7 @@ class all_pairs2(object):
             new_combs = []
             for i in range(0, self.n):
                 # numbers of new combinations to be created if this item is appended to array
-                new_combs.append(set([s.hashlize(z) for z in xunique_combinations(chosen_values_arr + [item], i + 1)]) - self.pairs.get_combs()[i])
+                new_combs.append(set([s.hashlize(z) for z in combinations(chosen_values_arr + [item], i + 1)]) - self.pairs.get_combs()[i])
             # weighting the node
             weights = [-len(new_combs[-1])]    # node that creates most of new pairs is the best
             weights.extend([len(data_node.out)])  # less used outbound connections most likely to produce more new pairs while search continues

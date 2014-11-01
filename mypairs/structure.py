@@ -1,7 +1,5 @@
 # -*- coding:utf-8 -*-
-from .combinatorics import (
-    xunique_combinations
-)
+from itertools import combinations
 from .compat import xrange
 
 
@@ -46,7 +44,7 @@ class PairsStorage(object):
 
     def add_sequence(self, seq):
         for i in xrange(1, self.n + 1):
-            for comb in xunique_combinations(seq, i):
+            for comb in combinations(seq, i):
                 self.add(comb)
 
     def get_node_info(self, item):
@@ -59,5 +57,5 @@ class PairsStorage(object):
         return len(self.combs_arr[-1])
 
     def count_new_combs(self, seq):
-        s = set([hashlize(z) for z in xunique_combinations(seq, self.n)]) - self.combs_arr[-1]
+        s = set([hashlize(z) for z in combinations(seq, self.n)]) - self.combs_arr[-1]
         return len(s)
