@@ -2,6 +2,7 @@
 from .combinatorics import (
     xunique_combinations
 )
+from .compat import xrange
 
 
 class Node(object):
@@ -12,7 +13,7 @@ class Node(object):
         self.out = set()
 
     def __str__(self):
-        return str(self.dict__)
+        return str(self.__dict__)
 
 
 class PairsStorage(object):
@@ -20,7 +21,7 @@ class PairsStorage(object):
         self.n = n
         self.nodes = {}
         self.combs_arr = []
-        for i in range(n):
+        for i in xrange(n):
             self.combs_arr.append(set())
 
     def add(self, comb):
@@ -40,7 +41,7 @@ class PairsStorage(object):
             curr.out.update(ids[i + 1:])
 
     def add_sequence(self, seq):
-        for i in range(1, self.n + 1):
+        for i in xrange(1, self.n + 1):
             for comb in xunique_combinations(seq, i):
                 self.add(comb)
 

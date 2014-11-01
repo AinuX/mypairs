@@ -13,7 +13,7 @@ class item(object):
         self.value = value
         self.weights = []
 
-    def __str__(self):
+    def __repr__(self):
         return str(self.__dict__)
 
 
@@ -29,12 +29,12 @@ class all_pairs2(object):
     def __iter__(self):
         return self
 
-    def __init__(self, options, filter_func=lambda x: True, previously_tested=[[]], n=2):
+    def __init__(self, options, filter_func=lambda x: True, previously_tested=None, n=2):
         """
         TODO: check that input arrays are:
             - (optional) has no duplicated values inside single array / or compress such values
         """
-
+        previously_tested = previously_tested or [[]]
         if len(options) < 2:
             raise Exception("must provide more than one option")
         for arr in options:
@@ -67,7 +67,7 @@ class all_pairs2(object):
 
     def next(self):
         assert(len(self.pairs) <= self.max_unique_pairs_expected)
-        p = self.pairs
+
         if len(self.pairs) == self.max_unique_pairs_expected:
             # no reasons to search further - all pairs are found
             raise StopIteration
