@@ -1,4 +1,4 @@
-from mypairs import all_pairs2 as all_pairs
+from mypairs import AllPairs
 
 
 """
@@ -41,7 +41,7 @@ def is_valid_combination( row ):
     return True
           
              
-pairwise = all_pairs( parameters, filter_func = is_valid_combination )
+pairwise = AllPairs( parameters, filter_func = is_valid_combination )
 
 for i, v in enumerate(pairwise):
     print("%i:\t%s" % (i, str(v)))

@@ -1,5 +1,4 @@
-import functools
-from mypairs import all_pairs2 as all_pairs
+from mypairs import AllPairs
 
 
 """
@@ -50,7 +49,7 @@ def is_valid_combination( values, names ):
     return True
           
              
-pairwise = all_pairs(
+pairwise = AllPairs(
       [ x[1] for x in parameters ]
     , filter_func = lambda values: is_valid_combination( values, [ x[0] for x in parameters ] )
     )

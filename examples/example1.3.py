@@ -1,4 +1,4 @@
-from mypairs import all_pairs2 as all_pairs
+from mypairs import AllPairs
 
 """
 Demo of the basic functionality - just getting pairwise combinations
@@ -23,7 +23,7 @@ tested = [ [ "Brand X", "98", "Modem", "Hourly", 10 ]
          , [ "Brand Y", "NT", "Internal", "Part-Time", 10 ]
          ]
              
-pairwise = all_pairs( parameters, previously_tested=tested )
+pairwise = AllPairs( parameters, previously_tested=tested )
 
 print("PAIRWISE:")
 for i, v in enumerate(pairwise):

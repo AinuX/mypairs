@@ -1,4 +1,4 @@
-from mypairs import all_pairs2 as all_pairs
+from mypairs import AllPairs
 
 """
 Provided to make it easier to compare efficiency with other tools
@@ -33,7 +33,7 @@ def print_result( dimensions ):
         header_list.append( "%i^%i" % d )
     header = " * ".join(header_list)
     
-    pairwise = all_pairs( get_arrays( dimensions ) )
+    pairwise = AllPairs( get_arrays( dimensions ) )
     n = len(list(pairwise))
     
     print( "%s: produces %i rows" % (header, n))

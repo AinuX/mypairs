@@ -25,7 +25,7 @@ def get_max_comb_number(arr, n):
     return total
 
 
-class all_pairs2(object):
+class AllPairs(object):
     def __iter__(self):
         return self
 
@@ -142,4 +142,4 @@ class all_pairs2(object):
     def get_pairs_found(self):
         return self.pairs
 
-__export__ = [all_pairs2, get_max_comb_number]
+__export__ = [AllPairs, get_max_comb_number]

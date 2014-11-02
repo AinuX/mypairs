@@ -1,4 +1,4 @@
-from mypairs import all_pairs2 as all_pairs
+from mypairs import AllPairs
 
 """
 Demo of the basic functionality - just getting pairwise/n-wise combinations
@@ -16,7 +16,7 @@ parameters = [ [ "Brand X", "Brand Y" ]
              , [ 6, 10, 15, 30, 60 ]
              ]
 
-triplewise = all_pairs( parameters, n=3 )
+triplewise = AllPairs( parameters, n=3 )
 
 print("TRIPLEWISE:")
 for i, v in enumerate(triplewise):
