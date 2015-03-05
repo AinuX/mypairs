@@ -47,7 +47,7 @@ class PyTest(TestCommand):
 
 
 setup(name='mypairs',
-      version='0.0',
+      version='0.0.1',
       description='-',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
