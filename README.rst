@@ -9,7 +9,7 @@ Demo of the basic functionality - just getting pairwise/n-wise combinations
 
 ::
 
-    from mypairs import all_pairs2 as all_pairs
+    from mypairs import AllPairs
 
     # sample parameters are is taken from 
     # http://www.stsc.hill.af.mil/consulting/sw_testing/improvement/cst.html
@@ -22,7 +22,7 @@ Demo of the basic functionality - just getting pairwise/n-wise combinations
                  , [ 6, 10, 15, 30, 60 ]
                  ]
 
-    pairwise = all_pairs( parameters )
+    pairwise = AllPairs( parameters )
 
     print("PAIRWISE:")
     for i, v in enumerate(pairwise):
